@@ -16,11 +16,12 @@
 # Notes:         4 parts (data cleaning 1-2, merging, analysis)
 #
 # 	Important changes to made:
-#               - Se convirtio previamente a .csv los archivos con los que
-#                 vamos a trabajar con el fin de evitar errores en typos o
-#                 formatos de datos y al momento de importar los .txt
-#                - Verificar que todos sean target efectivamente - PTE
-#                - cuando crucemos las bases de datos podremos indagar sobre cuantos de estos clientes se han fugado y ver carácteristicas en sus movimientos
+#                -
+#                - Crear una llave por año y unidad territorial
+#                - Cruzar territorio con codigos DANE
+
+#                - cuando crucemos las bases de datos podremos indagar sobre
+#
 #                -
 
 # ### 1. Data Preparation
@@ -59,10 +60,22 @@ base_2018[anio] = 2018
 
 #base_2019[k_etiqueta] = [try_concat(x, y) for x, y in zip(base_2019[Etiqueta], base_2019[anio])]
 
-base_2019[k_etiqueta] = base_2019.Etiqueta + '-' + base_2019.anio.map(str)
-base_2018[k_etiqueta] = base_2018.Etiqueta + '-' + base_2018.anio.map(str)
+base_2019[k_filt] = base_2019.Etiqueta + '-' + base_2019.anio.map(str)
+base_2018[k_filt] = base_2018.Etiqueta + '-' + base_2018.anio.map(str)
 
 bases = [base_2018, base_2019]
 df_total = pd.concat(bases)
 
-#las sacamos una a una por 
+#las sacamos una columna por cada una de las categorías una a una por demografico
+# llave nacional
+# llave regional
+# llave departamental
+# llave municipal
+# llave eapb
+#
+
+
+for col in list(df_total):
+    for x in df_total.iterrows():
+        if 'Municipio' in x:
+            df_total.[key_col] = df_total.loc[df_total[Etiqueta]] 'extract #before -'
