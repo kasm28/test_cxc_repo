@@ -75,7 +75,26 @@ df_total = pd.concat(bases)
 #
 
 
+for categ in df_total['Categoria'].iterrows():
+    if 'Municipio' in categ:
+        df_total[['k_mpio_cod', 'k_mpio_name']] = df_total['Etiqueta'].str.split("-", expand=True)
+    elif 'Departamento' in categ:
+        df_total['k_dpto_name'] = df_total['Etiqueta']
+    elif 'Región' in categ:
+        df_total['k_region'] = df_total['Etiqueta']
+    elif 'Nacional' in categ:
+        df_total['k_nacional'] = df_total['Indicador MM']+ '-' + df_total.anio.map(str)
+    elif 'EAPB' in categ:
+        df_total['k_eapb'] = df_total['Etiqueta']
+    elif 'Régimen' in categ:
+        df_total['k_regimen'] = df_total['Etiqueta']
+    elif 'Reglón' in categ:
+        
+
+
+
 for col in list(df_total):
     for x in df_total.iterrows():
         if 'Municipio' in x:
+            new =  data[k_[x]].str.split(" ", n = 1, expand = True)
             df_total.[key_col] = df_total.loc[df_total[Etiqueta]] 'extract #before -'
